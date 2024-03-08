@@ -1,6 +1,5 @@
 <template>
-  <h1>{{ bookmarkStore.hello }}</h1>
-  <h2>Bookmark manager</h2>
+  <router-view></router-view>
 </template>
 
 <script setup>
@@ -10,6 +9,10 @@ const bookmarkStore = useBookmarkStore();
 </script>
 
 <style>
+* {
+  box-sizing: border-box;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
