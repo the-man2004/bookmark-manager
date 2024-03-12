@@ -19,19 +19,11 @@
   </div>
   <div>
     <ul class="bookmark-wrapper">
-      <li
+      <BookmarkItem
         v-for="(bookmark, index) in bookmarkStore.bookmarks"
         :key="index"
-        class="bookmark-item"
-      >
-        <a :href="bookmark.url" target="_blank">
-          <div class="icon">{{ bookmark.title[0].toUpperCase() }}</div>
-          <h3>{{ bookmark.title }}</h3>
-        </a>
-        <div class="description">
-          {{ bookmark.description }}
-        </div>
-      </li>
+        :bookmark="bookmark"
+      ></BookmarkItem>
     </ul>
   </div>
 </template>
@@ -39,6 +31,7 @@
 <script setup>
 import { ref } from "vue";
 import { useBookmarkStore } from "../store/bookmark";
+import BookmarkItem from "../components/bookmarks/BookmarkItem.vue";
 
 const bookmarkStore = useBookmarkStore();
 
@@ -78,60 +71,13 @@ form {
 }
 
 .bookmark-wrapper {
-  display: flex;
-  gap: 15px;
-}
-
-.bookmark-item {
-  position: relative;
-
-  display: flex;
-  flex-direction: column;
-  list-style: none;
-  color: var(--primary-color);
-
-  max-width: 125px;
-}
-.bookmark-item a {
-  text-decoration: none;
-  color: var(--primary-color);
-}
-.bookmark-item .icon {
   margin: 0 auto;
+  padding: 0 30px;
+  max-width: 1250px;
 
   display: flex;
-  align-items: center;
   justify-content: center;
-  background: red;
-
-  width: 100px;
-  border-radius: 75px;
-  aspect-ratio: 1 / 1;
-
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: white;
-
-  box-shadow: 1px 1px 5px var(--primary-color);
-  transition: all 300ms ease;
-}
-.bookmark-item a:hover .icon,
-.bookmark-item a:focus .icon {
-  box-shadow: 2px 2px 10px var(--primary-color);
-}
-.bookmark-item h3 {
-  margin-top: 5px;
-  text-align: center;
-}
-
-.bookmark-item .description {
-  position: absolute;
-  padding: 10px;
-  top: 105%;
-  background: var(--primary-color);
-  color: var(--light-color);
-
-  font-size: 0.8rem;
-  border-radius: 10px;
+  flex-wrap: wrap;
+  gap: 30px;
 }
 </style>
