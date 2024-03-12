@@ -8,6 +8,8 @@ import TheHeader from "./components/TheHeader.vue";
 </script>
 
 <style>
+@import url("https://fonts.googleapis.com/css2?family=Madimi+One&display=swap");
+
 * {
   margin: 0;
   padding: 0;
@@ -22,7 +24,7 @@ import TheHeader from "./components/TheHeader.vue";
 }
 
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Madimi One", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

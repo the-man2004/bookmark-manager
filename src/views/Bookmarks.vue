@@ -1,6 +1,13 @@
 <template>
+  <h1>MY BOOKMARKS</h1>
   <div>
-    <h1>My Bookmarks</h1>
+    <ul class="bookmark-wrapper">
+      <BookmarkItem
+        v-for="(bookmark, index) in bookmarkStore.bookmarks"
+        :key="index"
+        :bookmark="bookmark"
+      ></BookmarkItem>
+    </ul>
   </div>
   <div>
     <form @submit.prevent="handleSubmit">
@@ -17,14 +24,8 @@
       <button>Submit</button>
     </form>
   </div>
-  <div>
-    <ul class="bookmark-wrapper">
-      <BookmarkItem
-        v-for="(bookmark, index) in bookmarkStore.bookmarks"
-        :key="index"
-        :bookmark="bookmark"
-      ></BookmarkItem>
-    </ul>
+  <div class="toolbar">
+    <button>Add</button>
   </div>
 </template>
 
@@ -63,6 +64,12 @@ const handleSubmit = () => {
 </script>
 
 <style scoped>
+h1 {
+  margin: 60px 0;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  text-align: center;
+}
+
 form {
   display: flex;
   flex-direction: column;
