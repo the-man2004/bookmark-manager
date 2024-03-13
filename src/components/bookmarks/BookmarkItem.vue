@@ -29,6 +29,7 @@ const isDescriptionVisible = ref(false);
 
 <style scoped>
 .bookmark-item {
+  padding-bottom: 5px;
   position: relative;
 
   display: flex;
@@ -78,7 +79,7 @@ const isDescriptionVisible = ref(false);
   position: absolute;
   z-index: 100;
   padding: 10px;
-  top: 105%;
+  top: 100%;
   width: 100%;
   background: var(--primary-color);
   color: var(--light-color);
