@@ -10,21 +10,6 @@
       <AddBookmark></AddBookmark>
     </ul>
   </div>
-  <div>
-    <form @submit.prevent="handleSubmit">
-      <label for="title">Title</label>
-      <input v-model="title" type="text" id="title" placeholder="e.g. Google" />
-      <label for="url">Url</label>
-      <input v-model="url" type="text" id="url" placeholder="e.g. google.com" />
-      <label for="description">Description</label>
-      <textarea
-        v-model="description"
-        id="description"
-        placeholder="Search the world's information, including webpages, images, videos and more."
-      ></textarea>
-      <button>Submit</button>
-    </form>
-  </div>
 </template>
 
 <script setup>
@@ -34,30 +19,6 @@ import BookmarkItem from "../components/bookmarks/BookmarkItem.vue";
 import AddBookmark from "../components/bookmarks/AddBookmark.vue";
 
 const bookmarkStore = useBookmarkStore();
-
-const title = ref("");
-const url = ref("");
-const description = ref("");
-
-const resetForm = () => {
-  title.value = "";
-  url.value = "";
-  description.value = "";
-};
-
-const handleSubmit = () => {
-  console.log(title.value, url.value, description.value);
-
-  if (title.value !== "" && url.value !== "") {
-    bookmarkStore.addBookmark({
-      title: title.value,
-      url: url.value,
-      description: description.value,
-    });
-
-    resetForm();
-  }
-};
 </script>
 
 <style scoped>
@@ -65,13 +26,6 @@ h1 {
   margin: 60px 0;
   font-size: clamp(2rem, 5vw, 3.5rem);
   text-align: center;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  max-width: 500px;
 }
 
 .bookmark-wrapper {

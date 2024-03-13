@@ -14,6 +14,7 @@ import TheHeader from "./components/TheHeader.vue";
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: inherit;
 }
 
 :root {

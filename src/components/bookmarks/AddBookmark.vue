@@ -1,11 +1,29 @@
 <template>
   <li>
-    <button>
+    <button @click="formIsOpen = !formIsOpen">
       <span></span>
     </button>
     <h3>Add</h3>
   </li>
+  <teleport to="body">
+    <div
+      v-show="formIsOpen === true"
+      @click="formIsOpen = !formIsOpen"
+      class="backdrop"
+    ></div>
+    <BookmarkForm
+      v-show="formIsOpen === true"
+      @submit="formIsOpen = !formIsOpen"
+    ></BookmarkForm>
+  </teleport>
 </template>
+
+<script setup>
+import { ref } from "vue";
+import BookmarkForm from "./BookmarkForm.vue";
+
+const formIsOpen = ref(false);
+</script>
 
 <style scoped>
 li {
@@ -27,6 +45,7 @@ button {
   font-size: 1.5rem;
   font-weight: 700;
   color: var(--accent-color);
+  background-color: rgba(0, 0, 0, 0.11);
   cursor: pointer;
 }
 
@@ -52,6 +71,15 @@ span::after {
 
 button:hover span {
   transform: rotate(90deg);
+}
+
+/* Backdrop */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: black;
+  opacity: 0.5;
+  cursor: pointer;
 }
 
 @media (min-width: 550px) {
