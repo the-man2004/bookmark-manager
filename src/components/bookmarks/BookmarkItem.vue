@@ -36,7 +36,7 @@ const isDescriptionVisible = ref(false);
   list-style: none;
   color: var(--primary-color);
 
-  width: 100px;
+  width: 75px;
 }
 .bookmark-item a {
   text-decoration: none;
@@ -50,7 +50,7 @@ const isDescriptionVisible = ref(false);
   justify-content: center;
   background: var(--accent-color);
 
-  width: 100px;
+  width: 75px;
   border-radius: 75px;
   aspect-ratio: 1 / 1;
 
@@ -86,5 +86,12 @@ const isDescriptionVisible = ref(false);
   font-size: 0.8rem;
   border-radius: 10px;
   box-shadow: 1px 1px 5px var(--primary-color);
+}
+
+@media (min-width: 550px) {
+  .bookmark-item,
+  .bookmark-item .icon {
+    width: 100px;
+  }
 }
 </style>

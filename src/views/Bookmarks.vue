@@ -7,6 +7,7 @@
         :key="index"
         :bookmark="bookmark"
       ></BookmarkItem>
+      <AddBookmark></AddBookmark>
     </ul>
   </div>
   <div>
@@ -24,19 +25,15 @@
       <button>Submit</button>
     </form>
   </div>
-  <div class="toolbar">
-    <button>Add</button>
-  </div>
 </template>
 
 <script setup>
 import { ref } from "vue";
 import { useBookmarkStore } from "../store/bookmark";
 import BookmarkItem from "../components/bookmarks/BookmarkItem.vue";
+import AddBookmark from "../components/bookmarks/AddBookmark.vue";
 
 const bookmarkStore = useBookmarkStore();
-
-const isDescriptionVisible = ref(false);
 
 const title = ref("");
 const url = ref("");
