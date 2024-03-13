@@ -14,7 +14,7 @@
         v-model="url"
         type="text"
         id="url"
-        placeholder="e.g. google.com"
+        placeholder="e.g. https://google.com"
         required
       />
       <label for="description">Description (optional)</label>

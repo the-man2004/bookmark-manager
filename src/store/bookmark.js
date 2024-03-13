@@ -109,6 +109,26 @@ export const useBookmarkStore = defineStore("useBookmarkStore", {
       ],
     };
   },
+  getters: {
+    bookmarksSorted: (state) => {
+      const arr = [...state.bookmarks];
+
+      arr.sort((a, b) => {
+        const titleA = a.title;
+        const titleB = b.title;
+
+        if (titleA < titleB) {
+          return -1;
+        }
+        if (titleA > titleB) {
+          return 1;
+        }
+        return 0;
+      });
+
+      return arr;
+    },
+  },
   actions: {
     addBookmark(newBookmark) {
       this.bookmarks.push(newBookmark);

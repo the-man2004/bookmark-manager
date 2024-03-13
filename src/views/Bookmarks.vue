@@ -3,7 +3,7 @@
   <div>
     <ul class="bookmark-wrapper">
       <BookmarkItem
-        v-for="(bookmark, index) in bookmarkStore.bookmarks"
+        v-for="(bookmark, index) in bookmarkStore.bookmarksSorted"
         :key="index"
         :bookmark="bookmark"
       ></BookmarkItem>
@@ -13,7 +13,6 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
 import { useBookmarkStore } from "../store/bookmark";
 import BookmarkItem from "../components/bookmarks/BookmarkItem.vue";
 import AddBookmark from "../components/bookmarks/AddBookmark.vue";
