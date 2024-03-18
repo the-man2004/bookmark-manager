@@ -155,6 +155,11 @@ export const useBookmarkStore = defineStore("useBookmarkStore", {
     },
     removeBookmark(id) {
       console.log(id);
+      const filteredBookmarks = this.bookmarks.filter(
+        (bookmark) => bookmark.id !== id
+      );
+
+      this.bookmarks = filteredBookmarks;
     },
   },
 });
