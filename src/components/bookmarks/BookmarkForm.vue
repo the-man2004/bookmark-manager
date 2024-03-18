@@ -72,6 +72,7 @@ const handleSubmit = () => {
 
   width: 80vw;
   max-width: 550px;
+  border: 2px solid var(--accent-color);
   border-radius: 10px;
   font-family: "Madimi One";
   background: var(--primary-color);
