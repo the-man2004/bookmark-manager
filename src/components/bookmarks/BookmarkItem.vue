@@ -1,8 +1,11 @@
 <template>
   <li
-    class="bookmark-item"
-    @mouseenter="isDescriptionVisible = true"
-    @mouseleave="isDescriptionVisible = false"
+    :class="{
+      'bookmark-item': screen === 'desktop',
+      'bookmark-item-mobile': screen === 'mobile',
+    }"
+    @mouseenter="handleMouseEnter"
+    @mouseleave="handleMouseExit"
   >
     <button
       v-if="isDescriptionVisible === true"
@@ -14,25 +17,50 @@
       <div class="icon">
         {{ props.bookmark.title[0].toUpperCase() }}
       </div>
-      <h3>{{ props.bookmark.title }}</h3>
+      <div>
+        <h3>{{ props.bookmark.title }}</h3>
+        <div
+          v-if="
+            isDescriptionVisible === true && props.bookmark.description !== ''
+          "
+          class="description"
+        >
+          {{ bookmark.description }}
+        </div>
+      </div>
     </a>
-    <div
-      v-if="isDescriptionVisible === true && props.bookmark.description !== ''"
-      class="description"
-    >
-      {{ bookmark.description }}
-    </div>
   </li>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import { useBookmarkStore } from "@/store/bookmark";
 
 const props = defineProps(["bookmark"]);
 const bookmarkStore = useBookmarkStore();
 
 const isDescriptionVisible = ref(false);
+const screen = ref();
+
+const handleMouseEnter = () => {
+  if (screen.value === "desktop") {
+    isDescriptionVisible.value = true;
+  }
+};
+const handleMouseExit = () => {
+  if (screen.value === "desktop") {
+    isDescriptionVisible.value = false;
+  }
+};
+
+onMounted(() => {
+  if ("ontouchstart" in window || navigator.maxTouchPoints) {
+    screen.value = "mobile";
+    isDescriptionVisible.value = true;
+  } else {
+    screen.value = "desktop";
+  }
+});
 </script>
 
 <style scoped>
@@ -52,7 +80,7 @@ const isDescriptionVisible = ref(false);
   text-decoration: none;
   color: var(--primary-color);
 }
-.bookmark-item button {
+button {
   padding: 5px;
   aspect-ratio: 1 / 1;
   position: absolute;
@@ -64,14 +92,14 @@ const isDescriptionVisible = ref(false);
   cursor: pointer;
   box-shadow: 1px 1px 5px var(--primary-color);
 }
-.bookmark-item .cross {
+.cross {
   display: block;
   height: 4px;
   width: 15px;
   transform: rotate(45deg);
   background: var(--primary-color);
 }
-.bookmark-item .cross::after {
+.cross::after {
   content: "";
   display: block;
   height: 4px;
@@ -79,7 +107,7 @@ const isDescriptionVisible = ref(false);
   transform: rotate(90deg);
   background: var(--primary-color);
 }
-.bookmark-item .icon {
+.icon {
   margin: 0 auto;
 
   display: flex;
@@ -123,6 +151,45 @@ const isDescriptionVisible = ref(false);
   font-size: 0.8rem;
   border-radius: 10px;
   box-shadow: 1px 1px 5px var(--primary-color);
+}
+
+/* Mobile styles */
+.bookmark-item-mobile {
+  padding: 5px 30px 5px 5px;
+  padding-bottom: 10px;
+  position: relative;
+  list-style: none;
+  border-radius: 10px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  width: 100%;
+  max-width: 350px;
+}
+
+.bookmark-item-mobile a {
+  text-decoration: none;
+  display: flex;
+}
+
+.bookmark-item-mobile h3 {
+  display: block;
+  margin-left: 10px;
+  color: var(--primary-color);
+}
+
+.bookmark-item-mobile .description {
+  margin-left: 10px;
+}
+
+.bookmark-item-mobile .icon {
+  margin: 0;
+  flex-shrink: 0;
+  max-height: 75px;
+}
+
+.bookmark-item-mobile button {
+  top: 5px;
+  right: 5px;
 }
 
 @media (min-width: 550px) {
