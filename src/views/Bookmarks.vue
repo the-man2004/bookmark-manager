@@ -28,7 +28,7 @@ h1 {
 }
 
 .bookmark-wrapper {
-  margin: 0 auto;
+  margin: 0 auto 60px auto;
   padding: 0 30px;
   max-width: 1250px;
 

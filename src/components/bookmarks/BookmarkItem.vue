@@ -33,8 +33,6 @@ const props = defineProps(["bookmark"]);
 const bookmarkStore = useBookmarkStore();
 
 const isDescriptionVisible = ref(false);
-
-const handleDelete = () => {};
 </script>
 
 <style scoped>
