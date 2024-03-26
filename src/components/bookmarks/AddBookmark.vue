@@ -77,6 +77,7 @@ button:hover span {
 .backdrop {
   position: fixed;
   inset: 0;
+  z-index: 10;
   background: black;
   opacity: 0.5;
   cursor: pointer;

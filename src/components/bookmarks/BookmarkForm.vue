@@ -68,6 +68,7 @@ const handleSubmit = () => {
   position: fixed;
   top: 50%;
   left: 50%;
+  z-index: 10;
   transform: translateX(-50%) translateY(-50%);
 
   width: 80vw;

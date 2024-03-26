@@ -71,7 +71,7 @@ button {
   position: absolute;
   top: 0;
   right: 0;
-  z-index: 50;
+  z-index: 10;
   border: none;
   border-radius: 100px;
   cursor: pointer;
@@ -148,7 +148,7 @@ button {
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
     rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
   width: 100%;
-  max-width: 350px;
+  max-width: 550px;
 }
 
 .bookmark-item-mobile a {
