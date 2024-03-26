@@ -1,11 +1,12 @@
 <template>
   <h1>MY BOOKMARKS</h1>
   <div>
-    <ul class="bookmark-wrapper">
+    <ul v-if="screen" class="bookmark-wrapper">
       <BookmarkItem
         v-for="(bookmark, index) in bookmarkStore.bookmarksSorted"
         :key="index"
         :bookmark="bookmark"
+        :screen="screen"
       ></BookmarkItem>
       <AddBookmark></AddBookmark>
     </ul>
@@ -13,11 +14,22 @@
 </template>
 
 <script setup>
+import { ref, onMounted } from "vue";
 import { useBookmarkStore } from "../store/bookmark";
 import BookmarkItem from "../components/bookmarks/BookmarkItem.vue";
 import AddBookmark from "../components/bookmarks/AddBookmark.vue";
 
 const bookmarkStore = useBookmarkStore();
+
+const screen = ref();
+
+onMounted(() => {
+  if ("ontouchstart" in window || navigator.maxTouchPoints) {
+    screen.value = "mobile";
+  } else {
+    screen.value = "desktop";
+  }
+});
 </script>
 
 <style scoped>

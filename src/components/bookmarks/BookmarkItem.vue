@@ -1,11 +1,11 @@
 <template>
   <li
     :class="{
-      'bookmark-item': screen === 'desktop',
-      'bookmark-item-mobile': screen === 'mobile',
+      'bookmark-item': props.screen === 'desktop',
+      'bookmark-item-mobile': props.screen === 'mobile',
     }"
-    @mouseenter="handleMouseEnter"
-    @mouseleave="handleMouseExit"
+    @mouseenter="isDescriptionVisible = true"
+    @mouseleave="isDescriptionVisible = false"
   >
     <button
       v-if="isDescriptionVisible === true"
@@ -36,29 +36,14 @@
 import { onMounted, ref } from "vue";
 import { useBookmarkStore } from "@/store/bookmark";
 
-const props = defineProps(["bookmark"]);
+const props = defineProps(["bookmark", "screen"]);
 const bookmarkStore = useBookmarkStore();
 
-const isDescriptionVisible = ref(false);
-const screen = ref();
-
-const handleMouseEnter = () => {
-  if (screen.value === "desktop") {
-    isDescriptionVisible.value = true;
-  }
-};
-const handleMouseExit = () => {
-  if (screen.value === "desktop") {
-    isDescriptionVisible.value = false;
-  }
-};
+const isDescriptionVisible = ref(true);
 
 onMounted(() => {
-  if ("ontouchstart" in window || navigator.maxTouchPoints) {
-    screen.value = "mobile";
-    isDescriptionVisible.value = true;
-  } else {
-    screen.value = "desktop";
+  if (props.screen === "desktop") {
+    isDescriptionVisible.value = false;
   }
 });
 </script>
@@ -179,6 +164,7 @@ button {
 
 .bookmark-item-mobile .description {
   margin-left: 10px;
+  color: var(--primary-color);
 }
 
 .bookmark-item-mobile .icon {
