@@ -22,6 +22,7 @@
       <textarea
         v-model="description"
         id="description"
+        maxlength="100"
         placeholder="Search the world's information, including webpages, images, videos and more."
       ></textarea>
       <button>ADD</button>
