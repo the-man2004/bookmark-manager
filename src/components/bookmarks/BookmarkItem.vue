@@ -4,8 +4,8 @@
       'bookmark-item': props.screen === 'desktop',
       'bookmark-item-mobile': props.screen === 'mobile',
     }"
-    @mouseenter="isDescriptionVisible = true"
-    @mouseleave="isDescriptionVisible = false"
+    @mouseenter="handleMouseEnter"
+    @mouseleave="handleMouseLeave"
   >
     <button
       v-if="isDescriptionVisible === true"
@@ -54,6 +54,18 @@ const title = computed(() => {
 });
 
 const isDescriptionVisible = ref(true);
+
+const handleMouseEnter = () => {
+  if (props.screen === "desktop") {
+    isDescriptionVisible.value = true;
+  }
+};
+
+const handleMouseLeave = () => {
+  if (props.screen === "desktop") {
+    isDescriptionVisible.value = false;
+  }
+};
 
 onMounted(() => {
   if (props.screen === "desktop") {
