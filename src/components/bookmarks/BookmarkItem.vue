@@ -18,7 +18,7 @@
         {{ props.bookmark.title[0].toUpperCase() }}
       </div>
       <div>
-        <h3>{{ props.bookmark.title }}</h3>
+        <h3>{{ title }}</h3>
         <div
           v-if="
             isDescriptionVisible === true && props.bookmark.description !== ''
@@ -33,11 +33,25 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from "vue";
+import { computed, onMounted, ref } from "vue";
 import { useBookmarkStore } from "@/store/bookmark";
 
 const props = defineProps(["bookmark", "screen"]);
 const bookmarkStore = useBookmarkStore();
+
+const title = computed(() => {
+  const t = props.bookmark.title;
+  const length = props.bookmark.title.length;
+  const halfLength = Math.round(length / 2);
+
+  if (length >= 10 && t.split(" ").length < 2) {
+    const newTitle = t.slice(0, halfLength) + "-" + t.slice(halfLength);
+
+    return newTitle;
+  }
+
+  return t;
+});
 
 const isDescriptionVisible = ref(true);
 
@@ -116,11 +130,9 @@ button {
   box-shadow: 2px 2px 10px var(--primary-color);
 }
 
-.bookmark-item .bookmark-item img {
-  width: 50px;
-}
 .bookmark-item h3 {
   margin-top: 5px;
+  font-size: 1rem;
   text-align: center;
 }
 
@@ -182,6 +194,10 @@ button {
   .bookmark-item,
   .bookmark-item .icon {
     width: 100px;
+  }
+
+  .bookmark-item h3 {
+    font-size: 1.2rem;
   }
 }
 </style>

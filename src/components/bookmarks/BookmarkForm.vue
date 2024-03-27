@@ -6,6 +6,7 @@
         v-model="title"
         type="text"
         id="title"
+        maxlength="15"
         placeholder="e.g. Google"
         required
       />
@@ -93,7 +94,7 @@ const handleSubmit = () => {
 }
 
 .form-container textarea {
-  height: 150px;
+  height: 75px;
   resize: none;
 }
 
